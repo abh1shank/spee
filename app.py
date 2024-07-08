@@ -3,17 +3,22 @@ import os
 import io
 from werkzeug.utils import secure_filename
 from google.cloud import storage
+import google.oauth2 as go
 from src.translate import get_output
+from src.config import get_service_account_info_google
 
 app = Flask(__name__)
 app.config['BUCKET_NAME'] = 'speech2speechbucket'
-storage_client = storage.Client()
+
+credentials = go.service_account.Credentials.from_service_account_info(get_service_account_info_google())
+storage_client = storage.Client(credentials=credentials)
 
 def upload_to_gcs(file, filename):
     bucket = storage_client.bucket(app.config['BUCKET_NAME'])
     blob = bucket.blob(filename)
     blob.upload_from_file(file)
     return blob
+
 def process_audio(file_path, language):
     return get_output(file_path, language)
 
@@ -35,7 +40,6 @@ def upload_file():
         filename = secure_filename(file.filename)
         gcs_blob = upload_to_gcs(file, filename)
         processed_url = process_audio(gcs_blob.name, language)
-
         return redirect(url_for('download_processed', filename=os.path.basename(processed_url)))
 
 @app.route('/download_processed/<filename>')
