@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech2Speech</title>
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+    <h1>Upload Audio File</h1>
+    <h4>Convert English Audio file to any Native Indian Language audio</h4>
+    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+        <label for="file">Select audio file:</label>
+        <input type="file" name="file" id="file" accept="audio/*" required>
+        <br><br>
+        <label for="language">Select language:</label>
+        <select name="language" id="language" required>
+            <option value="English">English</option>
+            <option value="Punjabi">Punjabi</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Gujarati">Gujarati</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Tamil">Tamil</option>
+            <option value="Marathi">Marathi</option>
+        </select>
+        <br><br>
+        <button type="submit">Upload</button>
+    </form>
+    <script src="./static/script.js"></script>
+</body>
+</html>

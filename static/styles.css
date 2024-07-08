@@ -1,0 +1,123 @@
+:root {
+    --background-color: #1a1a2e;
+    --form-background: #16213e;
+    --primary-color: #0f3460;
+    --accent-color: #e94560;
+    --text-color: #f0f0f0;
+    --input-background: #0f3460;
+    --input-border: #233554;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+h1 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+form {
+    background-color: var(--form-background);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--accent-color);
+}
+select, input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 25px;
+    background-color: var(--input-background);
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    color: var(--text-color);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+select:focus, input[type="file"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
+}
+
+select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23e94560" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+input[type="file"] {
+    padding: 10px;
+}
+
+input[type="file"]::file-selector-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #d13652;
+}
+
+input[type="submit"] {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #d13652;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.file-name {
+    margin-top: -20px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: var(--accent-color);
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+    form {
+        padding: 30px 20px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+}
