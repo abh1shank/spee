@@ -4,23 +4,21 @@ import time
 import google.oauth2 as go
 from google.cloud import texttospeech, storage
 from src.config import get_assembly, get_service_account_info_google
-
 credentials = go.service_account.Credentials.from_service_account_info(get_service_account_info_google())
 import assemblyai as aai
 aai.settings.api_key = get_assembly()
 class Speech_methods:
     @staticmethod
     def get_transcript(audio_file):
-        storage_client = storage.Client()
+        credentials = go.service_account.Credentials.from_service_account_info(get_service_account_info_google())
+        storage_client = storage.Client(credentials=credentials)
         bucket = storage_client.bucket('speech2speechbucket')
         blob = bucket.blob(audio_file)
-        exp=time.time()+3600
-        exp=int(exp)
+        exp = int(time.time() + 3600)
         audio_url = blob.generate_signed_url(expiration=exp)
-        print(audio_url)
+        #print(audio_url)
         transcriber = aai.Transcriber()
         transcript = transcriber.transcribe(audio_url)
-
         return transcript.text
 
     @staticmethod
