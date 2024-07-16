@@ -5,12 +5,12 @@ from werkzeug.utils import secure_filename
 from google.cloud import storage
 import google.oauth2 as go
 from src.translate import get_output
-from src.config import get_service_account_info_google
+from src.config import get_service_account_info_google,get_credentials
 
 app = Flask(__name__)
-app.config['BUCKET_NAME'] = 'speech2speechbucket'
+app.config['BUCKET_NAME'] = 'storage_bucket_abh1shank'
 
-credentials = go.service_account.Credentials.from_service_account_info(get_service_account_info_google())
+credentials = get_credentials()
 storage_client = storage.Client(credentials=credentials)
 
 def upload_to_gcs(file, filename):
